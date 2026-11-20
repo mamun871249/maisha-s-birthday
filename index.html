@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Maisha! 🎀🎂</title>
+  <!-- Google Fonts for playful headings & clean modern body text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Full-screen Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Floating Party Controls (Music & Sound FX) -->
+  <div class="party-controls" aria-label="Audio Controls">
+    <button id="music-toggle" class="control-pill" title="Toggle Background Music" aria-label="Toggle Background Music">
+      <span id="music-icon">🎵</span>
+      <span id="music-label">Music: Off</span>
+    </button>
+    <button id="sfx-toggle" class="control-pill" title="Toggle Sound Effects" aria-label="Toggle Sound Effects">
+      <span id="sfx-icon">🔊</span>
+      <span id="sfx-label">SFX: On</span>
+    </button>
+  </div>
+
+  <!-- Background Audio Element (Gracefully handles missing file) -->
+  <audio id="bg-music" loop preload="none">
+    <source src="music/birthday-music.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- =========================================================
+       1. HERO SECTION — BIRTHDAY SURPRISE
+       ========================================================= -->
+  <header id="hero" class="hero-section">
+    <!-- Floating Decorative Layer -->
+    <div class="hero-decorations" aria-hidden="true">
+      <div class="balloon b-pink" style="--left: 8%; --delay: 0s; --dur: 9s;"></div>
+      <div class="balloon b-lilac" style="--left: 20%; --delay: 2s; --dur: 11s;"></div>
+      <div class="balloon b-yellow" style="--left: 78%; --delay: 1s; --dur: 10s;"></div>
+      <div class="balloon b-sky" style="--left: 89%; --delay: 3s; --dur: 12s;"></div>
+      <div class="balloon b-peach" style="--left: 50%; --delay: 4s; --dur: 13s;"></div>
+
+      <span class="floating-star s1">✦</span>
+      <span class="floating-star s2">★</span>
+      <span class="floating-star s3">✨</span>
+      <span class="floating-star s4">✦</span>
+      <span class="floating-star s5">⭐</span>
+
+      <div class="sticker sticker-1">🎀 VIP VIP</div>
+      <div class="sticker sticker-2">👑 Birthday Queen</div>
+      <div class="sticker sticker-3">✨ 100% Iconic</div>
+      <div class="sticker sticker-4">🍰 Cake First</div>
+    </div>
+
+    <div class="hero-card reveal-up">
+      <div class="badge-pill">✨ OFFICIAL CELEBRATION MODE ✨</div>
+      <h1 class="hero-title">
+        HEY MAISHA!! 🎀<br />
+        <span class="gradient-text">TODAY IS YOUR DAY!</span>
+      </h1>
+      <p class="hero-subtitle">
+        Someone special deserves a celebration<br />
+        that is a little extra.
+      </p>
+      <button id="start-party-btn" class="btn-primary btn-bounce">
+        START THE PARTY 🎉
+      </button>
+    </div>
+
+    <div class="scroll-hint" aria-hidden="true">
+      <span>Scroll or click above to party</span>
+      <div class="scroll-arrow">↓</div>
+    </div>
+  </header>
+
+  <main id="party-content">
+    <!-- =========================================================
+         2. BIRTHDAY CAKE CUTTING CELEBRATION 🎂
+         ========================================================= -->
+    <section id="cake-section" class="section-wrapper">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="section-tag">🎂 MAIN EVENT</span>
+          <h2 class="section-title">
+            Okay birthday girl...<br />
+            <span class="accent-lilac">It's cake time! 🎂</span>
+          </h2>
+          <p class="section-desc" id="cake-instruction">
+            Make a wish, close your eyes for 2 seconds, and hit the button below!
+          </p>
+        </div>
+
+        <div class="cake-stage reveal-up">
+          <!-- Floating stars & balloons revealed when cake is cut -->
+          <div id="cake-celebration-sky" class="cake-sky" aria-hidden="true"></div>
+
+          <!-- Interactive Multi-Layer Cake -->
+          <div id="interactive-cake" class="cake-container" role="img" aria-label="Interactive multi-layer birthday cake with glowing candles">
+            <!-- Knife animation element -->
+            <div id="cake-knife" class="cake-knife" aria-hidden="true">🔪</div>
+
+            <!-- Left Half of Cake -->
+            <div class="cake-half cake-left">
+              <!-- Candles (Left & Center) -->
+              <div class="candles-row">
+                <div class="candle c-pink">
+                  <div class="flame" id="flame-1"></div>
+                  <div class="wick"></div>
+                </div>
+                <div class="candle c-sky">
+                  <div class="flame" id="flame-2"></div>
+                  <div class="wick"></div>
+                </div>
+              </div>
+              <!-- Top Tier -->
+              <div class="tier tier-top">
+                <div class="frosting-drips"></div>
+                <div class="sprinkles"></div>
+                <div class="cake-topper-left">🎀</div>
+              </div>
+              <!-- Bottom Tier -->
+              <div class="tier tier-bottom">
+                <div class="frosting-drips"></div>
+                <div class="sprinkles"></div>
+                <div class="tier-band"></div>
+              </div>
+              <div class="cake-plate"></div>
+            </div>
+
+            <!-- Inner Cake Slice Reveal (visible when split) -->
+            <div class="cake-inside-glow" aria-hidden="true">
+              <span>🍓</span>
+              <span>✨</span>
+              <span>🍰</span>
+            </div>
+
+            <!-- Right Half of Cake -->
+            <div class="cake-half cake-right">
+              <!-- Candle (Right) -->
+              <div class="candles-row">
+                <div class="candle c-yellow">
+                  <div class="flame" id="flame-3"></div>
+                  <div class="wick"></div>
+                </div>
+              </div>
+              <!-- Top Tier -->
+              <div class="tier tier-top">
+                <div class="frosting-drips"></div>
+                <div class="sprinkles"></div>
+                <div class="cake-topper-right">✨</div>
+              </div>
+              <!-- Bottom Tier -->
+              <div class="tier tier-bottom">
+                <div class="frosting-drips"></div>
+                <div class="sprinkles"></div>
+                <div class="tier-band"></div>
+              </div>
+              <div class="cake-plate"></div>
+            </div>
+          </div>
+
+          <!-- Cake Action Button -->
+          <div class="cake-controls">
+            <button id="cut-cake-btn" class="btn-primary btn-cake">
+              CUT THE CAKE ✨
+            </button>
+          </div>
+
+          <!-- Hidden Celebration & Wish Reveal Card -->
+          <div id="cake-reveal-card" class="cake-reveal-card hidden" aria-live="polite">
+            <div class="reveal-badge">🎉 WISH GRANTED & CAKE SERVED! 🎉</div>
+            <h3 class="funny-cake-msg">
+              🚨 BREAKING NEWS: Maisha has officially leveled up! Scientists confirm she is still 100% immune to acting her age and legally entitled to the biggest slice of cake. 😂🍰
+            </h3>
+            <p class="heartfelt-cake-wish">
+              May this new chapter bring you sweet moments, zero stress, endless laughter, and every single dream you secretly wished for before blowing out those candles. ✨💛
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         3. FUNNY BIRTHDAY QUOTES 😂
+         ========================================================= -->
+    <section id="quotes-section" class="section-wrapper alt-bg">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="section-tag">📜 VERIFIED FACTS</span>
+          <h2 class="section-title">OFFICIAL BIRTHDAY FACTS ABOUT MAISHA</h2>
+        </div>
+
+        <div class="quote-arena reveal-up">
+          <div id="quote-card" class="quote-card theme-pink">
+            <div class="quote-top-bar">
+              <span class="quote-number" id="quote-counter">Fact #1 of 6</span>
+              <span class="quote-emoji" id="quote-emoji">😂</span>
+            </div>
+            <p id="quote-text" class="quote-text">
+              "Congratulations! You're now one year closer to becoming a professional adult. Still not qualified though. 😂"
+            </p>
+            <div class="quote-stamp">APPROVED BY BESTIE COMMITTEE ✓</div>
+          </div>
+
+          <button id="next-quote-btn" class="btn-secondary">
+            Give me another joke 😂
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         4. FOUR PHOTO MEMORY SECTION 📸
+         ========================================================= -->
+    <section id="gallery-section" class="section-wrapper">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="section-tag">📸 ICONIC ARCHIVES</span>
+          <h2 class="section-title">Moments Worth Celebrating</h2>
+          <p class="section-desc">Click any photo to view full screen ✨</p>
+        </div>
+
+        <div class="bento-gallery">
+          <!-- Photo 1: Large featured photo -->
+          <figure class="photo-card photo-featured reveal-up" data-index="0">
+            <div class="photo-frame">
+              <img
+                src="photos/photo1.jpg"
+                alt="Maisha memory 1"
+                loading="lazy"
+                onerror="handleImageError(this, 'Photo 1', 'Place photos/photo1.jpg here')"
+              />
+              <div class="photo-zoom-hint">🔍 Click to enlarge</div>
+            </div>
+            <figcaption class="photo-caption">
+              <span class="caption-sticker">⭐</span> Main character energy ✨
+            </figcaption>
+          </figure>
+
+          <!-- Photo 2: Tilted playful photo frame -->
+          <figure class="photo-card photo-tilted reveal-up" data-index="1">
+            <div class="photo-frame">
+              <img
+                src="photos/photo2.jpg"
+                alt="Maisha memory 2"
+                loading="lazy"
+                onerror="handleImageError(this, 'Photo 2', 'Place photos/photo2.jpg here')"
+              />
+              <div class="photo-zoom-hint">🔍 Click to enlarge</div>
+            </div>
+            <figcaption class="photo-caption">
+              <span class="caption-sticker">🤪</span> Certified chaos.
+            </figcaption>
+          </figure>
+
+          <!-- Photo 3: Rounded cinematic photo -->
+          <figure class="photo-card photo-cinematic reveal-up" data-index="2">
+            <div class="photo-frame">
+              <img
+                src="photos/photo3.jpg"
+                alt="Maisha memory 3"
+                loading="lazy"
+                onerror="handleImageError(this, 'Photo 3', 'Place photos/photo3.jpg here')"
+              />
+              <div class="photo-zoom-hint">🔍 Click to enlarge</div>
+            </div>
+            <figcaption class="photo-caption">
+              <span class="caption-sticker">🎞️</span> A moment worth keeping.
+            </figcaption>
+          </figure>
+
+          <!-- Photo 4: Final featured memory -->
+          <figure class="photo-card photo-finale reveal-up" data-index="3">
+            <div class="photo-frame">
+              <img
+                src="photos/photo4.jpg"
+                alt="Maisha memory 4"
+                loading="lazy"
+                onerror="handleImageError(this, 'Photo 4', 'Place photos/photo4.jpg here')"
+              />
+              <div class="photo-zoom-hint">🔍 Click to enlarge</div>
+            </div>
+            <figcaption class="photo-caption">
+              <span class="caption-sticker">🎀</span> Just Maisha being Maisha.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         5. FRIENDSHIP FUN ZONE 🎮
+         ========================================================= -->
+    <section id="funzone-section" class="section-wrapper alt-bg">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="section-tag">🎮 MINI PARTY GAMES</span>
+          <h2 class="section-title">LET'S TEST YOUR BIRTHDAY LUCK!</h2>
+        </div>
+
+        <div class="funzone-grid">
+          <!-- A. Random Compliment Generator -->
+          <div class="fun-card card-peach reveal-up">
+            <div class="fun-card-icon">💗</div>
+            <h3>Hype Machine</h3>
+            <p class="fun-card-sub">Need an instant ego boost? Tap below.</p>
+            <div id="compliment-box" class="result-bubble">
+              "Your smile has its own fan club."
+            </div>
+            <button id="compliment-btn" class="btn-fun btn-pink">
+              Give me a compliment 💗
+            </button>
+          </div>
+
+          <!-- B. Birthday Mood Button -->
+          <div class="fun-card card-lilac reveal-up">
+            <div class="fun-card-icon">🎭</div>
+            <h3>Current Birthday Mood</h3>
+            <p class="fun-card-sub">Pick your exact vibe right now:</p>
+            <div class="mood-buttons">
+              <button class="mood-btn" data-mood="cute">Cute 🎀</button>
+              <button class="mood-btn" data-mood="sleepy">Sleepy 😴</button>
+              <button class="mood-btn" data-mood="dramatic">Dramatic 🎭</button>
+              <button class="mood-btn" data-mood="hungry">Hungry 🍕</button>
+            </div>
+            <div id="mood-response" class="result-bubble">
+              Select a mood above for an official diagnosis!
+            </div>
+          </div>
+
+          <!-- C. Secret Button -->
+          <div class="fun-card card-sky reveal-up">
+            <div class="fun-card-icon">🚨</div>
+            <h3>Top Secret File</h3>
+            <p class="fun-card-sub">Whatever you do, resist the temptation...</p>
+            <button id="secret-btn" class="btn-secret">
+              DO NOT CLICK THIS 👀
+            </button>
+            <div id="secret-reveal" class="secret-box hidden">
+              <p>
+                <strong>I KNEW YOU'D CLICK IT! 😂</strong><br />
+                Zero self-control, 100% iconic behavior. Since you broke the rules, you officially owe your bestie a treat! 🧋🍟
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         6. BEAUTIFUL BIRTHDAY WISH 💌
+         ========================================================= -->
+    <section id="wish-section" class="section-wrapper">
+      <div class="container">
+        <div class="greeting-card reveal-up">
+          <div class="card-corner-ribbon">💌 FOR MAISHA</div>
+          <div class="card-sparkles" aria-hidden="true">✨ 🎀 ✨</div>
+          <h2 class="wish-heading">A little wish for you...</h2>
+          <div class="wish-body">
+            <p>Happy Birthday, Maisha!</p>
+            <p>
+              I hope this new year of your life brings you genuine happiness, peaceful days, unforgettable memories, exciting adventures and countless reasons to smile.
+            </p>
+            <p>
+              May you always find courage to chase your dreams, strength during difficult moments and people who appreciate the wonderful person you are.
+            </p>
+            <p>
+              Keep smiling, keep dreaming and never stop being yourself.<br />
+              You deserve beautiful things, not only today but every day.
+            </p>
+            <p class="wish-signoff">Happy Birthday once again! ♡</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         7. FINAL SURPRISE 🎁
+         ========================================================= -->
+    <section id="surprise-section" class="section-wrapper alt-bg">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="section-tag">🎁 GRAND FINALE</span>
+          <h2 class="section-title">WAIT... ONE LAST SURPRISE!</h2>
+          <p class="section-desc" id="gift-hint">Tap the gift box to unwrap your final birthday surprise!</p>
+        </div>
+
+        <div class="gift-stage reveal-up">
+          <!-- Interactive 3D-Styled CSS Gift Box -->
+          <button id="gift-box" class="gift-box" aria-label="Open Birthday Gift Box">
+            <div class="gift-stars" aria-hidden="true">
+              <span>⭐</span><span>✨</span><span>💖</span><span>🌟</span><span>🎀</span>
+            </div>
+            <div class="gift-lid">
+              <div class="gift-bow">
+                <div class="bow-loop left"></div>
+                <div class="bow-loop right"></div>
+                <div class="bow-knot"></div>
+              </div>
+              <div class="lid-ribbon"></div>
+            </div>
+            <div class="gift-body">
+              <div class="body-ribbon-v"></div>
+              <div class="body-ribbon-h"></div>
+              <span class="gift-tag">TAP ME 🎁</span>
+            </div>
+          </button>
+
+          <!-- Final Hidden Message -->
+          <div id="final-surprise-card" class="final-message-card hidden" aria-live="polite">
+            <div class="final-emoji-row">🎂 🥂 ✨ 🎀 🎉</div>
+            <p class="final-message-text">
+              <strong>Happy Birthday, Maisha! 🎂</strong><br /><br />
+              May your life be filled with laughter, beautiful memories, amazing opportunities and happiness that never runs out.<br /><br />
+              Stay happy, stay awesome and never lose your beautiful spark.<br /><br />
+              <span class="highlight-line">Today is your day. Enjoy every second of it! ♡</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="party-footer">
+    <p>Made with 💗, confetti, and bestie chaos specially for <strong>Maisha</strong> 🎀</p>
+  </footer>
+
+  <!-- =========================================================
+       PHOTO LIGHTBOX MODAL
+       ========================================================= -->
+  <div id="lightbox" class="lightbox hidden" role="dialog" aria-modal="true" aria-label="Enlarged Photo View">
+    <button id="lightbox-close" class="lightbox-close" aria-label="Close photo">✕</button>
+    <button id="lightbox-prev" class="lightbox-nav prev" aria-label="Previous photo">‹</button>
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="Enlarged memory" />
+      <p id="lightbox-caption" class="lightbox-caption"></p>
+    </div>
+    <button id="lightbox-next" class="lightbox-nav next" aria-label="Next photo">›</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
